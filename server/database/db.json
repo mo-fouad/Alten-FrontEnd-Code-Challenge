@@ -1,0 +1,56 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "user_name": "Kalles Grustransporter AB",
+      "user_address": "Cementvägen 8, 111 11 Södertälje"
+    },
+    {
+      "id": 2,
+      "user_name": "Johans Bulk AB",
+      "user_address": "Balkvägen 12, 222 22 Stockholm"
+    },
+    {
+      "id": 3,
+      "user_name": "Haralds Värdetransporter AB",
+      "user_address": "Budgetvägen 1, 333 33 Uppsala"
+    }
+  ],
+  "vehicles": [
+    {
+      "user_id": "1",
+      "vehicle_id": "YS2R4X20005399401",
+      "reg_number": "ABC123"
+    },
+    {
+      "user_id": "1",
+      "vehicle_id": "VLUR4X20009093588",
+      "reg_number": "DEF456"
+    },
+    {
+      "user_id": "1",
+      "vehicle_id": "VLUR4X20009048066",
+      "reg_number": "GHI789"
+    },
+    {
+      "user_id": "2",
+      "vehicle_id": "YS2R4X20005388011",
+      "reg_number": "JKL012"
+    },
+    {
+      "user_id": "2",
+      "vehicle_id": "YS2R4X20005387949",
+      "reg_number": "MNO345"
+    },
+    {
+      "user_id": "3",
+      "vehicle_id": "VLUR4X20009048066",
+      "reg_number": "PQR678"
+    },
+    {
+      "user_id": "3",
+      "vehicle_id": "YS2R4X20005387055",
+      "reg_number": "STU901"
+    }
+  ]
+}
