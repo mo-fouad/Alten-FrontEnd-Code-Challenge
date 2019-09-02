@@ -20,7 +20,7 @@ function configureStore(initialState) {
         initialState,
         composeEnhancers(applyMiddleware(
             thunk,
-            loggerMiddleware,
+           // loggerMiddleware,
             reduxImmutableStateInvariant(),
             ),
         ),

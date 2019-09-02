@@ -3,3 +3,7 @@ export const initialState = {
     userData: [],
     errorDetails: ''
 };
+
+export const initialIOStatus = {
+    userData:{}
+}
