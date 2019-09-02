@@ -1,53 +1,61 @@
-
-const express = require("express");
-const http = require("http");
-const socketIo = require("socket.io");
-const axios = require("axios");
-const cors = require('cors');
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const port = process.env.PORT || 4001;
-const index = require("./routes/index");
+const db = require("./database/db");
+
+app.get('/', function (req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
 
 
-let interval;
-
-const app = express();
-
-
-app.use(index);
-app.use(cors());
-
-const server = http.createServer(app);
-
-const io = socketIo(server);
-
-// Getting Data From the End Point;
 const getApiAndEmit = async socket => {
-    try {
-        const res = await axios.get(
-            "http://localhost:4001/"
-        ); // Getting the data from DarkSky
-        socket.emit("FromAPI", res.data.currently.temperature); // Emitting a new message. It will be consumed by the client
-    } catch (error) {
-        console.error(`Error: ${error.code}`);
-    }
+    socket.emit("FromAPI", {Data: "data"})
 };
 
 
-io.on("connection", socket => { // When client connect
+/**
+ * Sending Updated Data every 1 sec .. just to fake the Real-Life Data
+ */
+io.on('connection', (socket) => {
     console.log("New client connected");
-
-    if (interval) {
-        clearInterval(interval);
-    }
-    interval = setInterval(
-        () => getApiAndEmit(socket),
-        1000
-    );
-
+    setInterval(() => {
+        socket.emit('news', updateDBVehicles(db))
+    }, 1000);
     socket.on("disconnect", () => {
         console.log("Client disconnected");
     });
 });
 
-// Starting the Server
+// Manipulating Data to send Fake Status
+
+/**
+ * Taks the jsonData base and adding random status every time this API calls
+ * @param db  // Data base Json Object
+ * @returns db // the updaded Data base with random Status
+ *
+ */
+let updateDBVehicles = (db) => {
+    let vehiclesJson = [];
+    if (db.vehicles) {
+        db.vehicles.forEach((ele) => {
+            ele.status = getRandomStatus();
+            vehiclesJson.push(ele);
+        });
+    }
+    return db
+};
+
+/**
+ * creating a random function that returns a string of Active or not-active
+ * @returns {string}
+ */
+let getRandomStatus = () => {
+    let randomNumber = Math.random();
+    if (randomNumber >= 0.5)
+        return "is-active";
+    else
+        return "not-active";
+};
+
 server.listen(port, () => console.log(`Listening on port ${port}`));
