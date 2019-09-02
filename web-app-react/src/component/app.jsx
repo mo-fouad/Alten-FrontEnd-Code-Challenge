@@ -17,10 +17,29 @@ export class App extends Component {
 
     render() {
 
-        console.log(this.props.userData);
+
+        // destructuring UserData & user & vehicles,
+        // setting up initial value for userData
+        const {isFetching, userData: {users, vehicles} = {}, errorDetails} = this.props;
+
+        if (isFetching) {
+            return <div>Loading</div>
+        }
+
+        if (users && users.length > 0) {
+            return (
+                <div>
+                    {users.map(({user_name, id}) => (<li>{user_name}</li>))
+                    }
+                    <hr/>
+                    {vehicles.map( ({reg_number, status}) => <li>{reg_number} {status}</li>)}
+                </div>
+            )
+        }
+
         return (
             <div>
-                Hello From App
+                Error
             </div>
         )
     }
@@ -28,7 +47,7 @@ export class App extends Component {
 
 // Map Redux state to props
 function mapStateToProps(state) {
-    let {errorDetails, isFetching, userData} = state;
+    const {errorDetails, isFetching, userData} = state.APIReducer;
     return {
         errorDetails, isFetching, userData,
     };
