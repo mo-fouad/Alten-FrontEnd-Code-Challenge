@@ -1,15 +1,25 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {bindActionCreators} from 'redux';
 //import * as APIActions from '../redux/actions/apiActions';
 import * as IOActions from '../redux/actions/ioActions'
 import {connect} from 'react-redux';
 
+import Header from "./layouts/Header";
+import Footer from "./layouts/Footer";
+import SearchCard from "./layouts/SearchCard.js"
+
+import '../scss/app.scss'
+import TableView from "./layouts/TableOfUsers";
+import Container from "@material-ui/core/Container";
+import MapView from "./map/MapOfUsers";
+
 
 export class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {};
     }
+
 
     componentDidMount() {
         const {getUsersDataIo} = this.props;
@@ -17,44 +27,41 @@ export class App extends Component {
     }
 
     render() {
-        // destructuring UserData & destructuring  user & vehicles from it,
-        // setting up initial value for userData
-
-        console.log(this.props.userData);
         const {userData} = this.props;
 
         if (userData) {
             const {users, vehicles} = userData
             if (users && users.length > 0) {
                 return (
-                    <div>
-                        {users.map(({user_name, id}) => (<li key={id}>{user_name}</li>))
-                        }
-                        <hr/>
-                        {vehicles.map(({reg_number, status}) => <li key={reg_number}>{reg_number} {status}</li>)}
-                    </div>
+                    <Fragment>
+                        <Header></Header>
+                        <Container maxWidth="lg">
+                            <SearchCard></SearchCard>
+                            <MapView userData={this.props.userData}></MapView>
+                            {/*<TableView userData={this.props.userData}></TableView>*/}
+                        </Container>
+
+
+
+                        {/*<div className="hidden">*/}
+                        {/*    {users.map(({user_name, id}) => (<li key={id}>{user_name}</li>))*/}
+                        {/*    }*/}
+                        {/*    <hr/>*/}
+                        {/*    {vehicles.map(({reg_number, status}) => <li key={reg_number}>{reg_number} {status}</li>)}*/}
+                        {/*</div>*/}
+                        {/*<MapView></MapView>*/}
+                        {/*<TableView></TableView>*/}
+                        {/*<div className="main-control">*/}
+
+                        {/*</div>*/}
+                        <Footer></Footer>
+                    </Fragment>
                 )
             }
         }
-        // const {userData: {users, vehicles} = {}} = this.props;
-        //
-        // if (userData) {
-        //     console.log("HEllo")
-        // }
-        // // if (userData && userData.users && userData.users.length > 0) {
-        //     return (
-        //         <div>
-        //             {users.map(({user_name, id}) => (<li>{user_name}</li>))
-        //             }
-        //             <hr/>
-        //             {vehicles.map( ({reg_number, status}) => <li>{reg_number} {status}</li>)}
-        //         </div>
-        //     )
-        // }
-
         return (
             <div>
-                Error
+                Loading
             </div>
         )
     }
