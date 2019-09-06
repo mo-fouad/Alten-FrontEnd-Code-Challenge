@@ -53,11 +53,12 @@ function SearchCard(props) {
                         <Grid container spacing={2} direction="row" justify="center">
                             <Grid item xs={9}>
                                 <Select
+                                    placeholder={props.words.select}
                                     onChange={usersPicked => SelectChange(usersPicked)}
                                     options={userOptions} isMulti/>
                             </Grid>
                             <Grid className={classes.switchToRight} item xs={3}>
-                                <span>Active Only :</span>
+                                <span> {props.words.active}:</span>
                                 <Switch
                                     onChange={SwitchChange()}
                                     color="primary"
@@ -68,27 +69,6 @@ function SearchCard(props) {
                     </Paper>
                 </Grid>
             </Grid>
-
-            {/*<ExpansionPanel className={classes.expands}>*/}
-            {/*    <ExpansionPanelSummary*/}
-            {/*        expandIcon={<ExpandMoreIcon/>}*/}
-            {/*        aria-controls="panel1a-content"*/}
-            {/*        id="panel1a-header"*/}
-            {/*    >*/}
-            {/*        <Typography className={classes.heading}>Advanced View Options</Typography>*/}
-            {/*    </ExpansionPanelSummary>*/}
-            {/*    <ExpansionPanelDetails>*/}
-            {/*        <Grid container className={classes.root} spacing={2}>*/}
-            {/*            <Grid item xs={10}>*/}
-            {/*                <Select options={options} isMulti />*/}
-            {/*            </Grid>*/}
-            {/*            <Grid item xs={2}>*/}
-            {/*                 Active :*/}
-
-            {/*            </Grid>*/}
-            {/*        </Grid>*/}
-            {/*    </ExpansionPanelDetails>*/}
-            {/*</ExpansionPanel>*/}
         </div>
     )
 }

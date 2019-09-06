@@ -1,10 +1,10 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {Route, Switch} from "react-router-dom";
 //import * as APIActions from '../redux/actions/apiActions';
 import * as IOActions from '../redux/actions/ioActions'
 import {connect} from 'react-redux';
-
+import Fullscreen from "react-full-screen";
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 import SearchCard from "./layouts/SearchCard.jsx"
@@ -15,6 +15,7 @@ import LoadingCircle from "./fragments/Loading";
 import {Container} from '@material-ui/core'
 import MapView from "./map/MapOfUsers";
 
+import words from '../localization/app'
 
 export class App extends Component {
 
@@ -22,7 +23,9 @@ export class App extends Component {
         super(props);
         this.state = {
             isActive: false,
-            userPicked: []
+            isFull: false,
+            userPicked: [],
+            language: 'en'
         }
     }
 
@@ -67,20 +70,36 @@ export class App extends Component {
         return updatedUsers;
     };
 
+    changeLang = (lang) => {
+        this.setState({language: lang})
+    };
+
+    goFull = () => {
+        if (this.state.isFull === false)
+            this.setState({isFull: true});
+        else
+            this.setState({isFull: false})
+    };
 
     render() {
         const {userData} = this.props; // passing users to the Search CArd
 
         const updatedUserData = this.filterUserData(userData);
 
+        words.setLanguage(this.state.language);
+
         if (userData) {
             const {users} = updatedUserData;
             if (users && users.length > 0) {
                 return (
-                    <Fragment>
-                        <Header></Header>
+                    <Fullscreen
+                        enabled={this.state.isFull}
+                        onChange={isFull => this.setState({isFull})}
+                    >
+                        <Header words={words} onChangeFullScreen={this.goFull} changeLang={this.changeLang}></Header>
                         <Container maxWidth="lg">
                             <SearchCard
+                                words={words}
                                 users={userData.users}
                                 isActive={this.state.isActive}
                                 onChangeActive={this.changeActive}
@@ -92,12 +111,12 @@ export class App extends Component {
                                     <MapView userData={updatedUserData}></MapView>
                                 </Route>
                                 <Route exact path="/(table|)">
-                                    <TableView userData={updatedUserData}></TableView>
+                                    <TableView words={words} userData={updatedUserData}></TableView>
                                 </Route>
                             </Switch>
                         </Container>
                         <Footer></Footer>
-                    </Fragment>
+                    </Fullscreen>
                 )
             }
         }

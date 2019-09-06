@@ -17,13 +17,14 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-function Header() {
+function Header(props) {
     const classes = useStyles();
     const [values, setValues] = React.useState({
-        lang: 'En',
+        en: 'En',
+        se: 'Se',
     });
-
     function handleChange(event) {
+        console.log(event.target.value)
         setValues(oldValues => ({
             ...oldValues,
             [event.target.name]: event.target.value,
@@ -35,22 +36,23 @@ function Header() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h4" color="inherit">
-                        Vehicles App
+                        {props.words.logo}
                     </Typography>
 
 
                     <FormControl className={classes.menuLang}>
+
                         <Select
-                            className={classes.select}
-                            value="En"
-                            name="name"
-                            onChange={handleChange}
+                            className={classes.formControl}
+                            value={values.en}
+                            name='En'
+                            onChange={(e) => props.changeLang(e.target.value)}
                         >
-                            <MenuItem value="En">En</MenuItem>
-                            <MenuItem value="Se">Se</MenuItem>
+                            <MenuItem value={"en"}>En</MenuItem>
+                            <MenuItem value={"se"}>Se</MenuItem>
                         </Select>
                     </FormControl>
-                    <Button variant="outlined" className={classes.button}>
+                    <Button variant="outlined" onClick={props.onChangeFullScreen} className={classes.button}>
                         <FullscreenIcon></FullscreenIcon>
                     </Button>
                 </Toolbar>

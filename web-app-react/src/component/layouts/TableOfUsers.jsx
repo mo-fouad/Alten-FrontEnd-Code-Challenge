@@ -27,6 +27,8 @@ function TableView(props) {
     const classes = useStyles();
     const {userData: {users, vehicles} = {}} = props;
 
+    const {words} = props
+
     return (
         <>
             {users.map(user => (
@@ -36,9 +38,9 @@ function TableView(props) {
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Car ID</TableCell>
-                                <TableCell>Car Plate Name </TableCell>
-                                <TableCell align="center">Care Status</TableCell>
+                                <TableCell>{words.carId}</TableCell>
+                                <TableCell>{words.carPlate}</TableCell>
+                                <TableCell align="center">{words.carStatus}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
