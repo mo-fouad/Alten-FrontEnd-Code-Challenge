@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {bindActionCreators} from 'redux';
+import {Route, Switch} from "react-router-dom";
 //import * as APIActions from '../redux/actions/apiActions';
 import * as IOActions from '../redux/actions/ioActions'
 import {connect} from 'react-redux';
@@ -10,59 +11,99 @@ import SearchCard from "./layouts/SearchCard.js"
 
 import '../scss/app.scss'
 import TableView from "./layouts/TableOfUsers";
-import Container from "@material-ui/core/Container";
+import LoadingCircle from "./fragments/Loading";
+import {Container} from '@material-ui/core'
 import MapView from "./map/MapOfUsers";
 
 
 export class App extends Component {
+
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            isActive: false,
+            userPicked: []
+        }
     }
 
-
-    componentDidMount() {
+    componentDidMount = () => {
         const {getUsersDataIo} = this.props;
         getUsersDataIo();
-    }
+    };
+
+    changeActive = (data) => {
+        this.setState({isActive: data});
+    };
+
+    userHasPicked = (usersPicks) => {
+        !usersPicks ?
+            this.setState({userPicked: []}) :
+            this.setState({userPicked: usersPicks})
+    };
+
+    filterUserData = (userData) => {
+        let activeUsersIds = this.state.userPicked;
+        let isActive = this.state.isActive;
+
+        let updatedUsers = {
+            users: userData.users,
+            vehicles: userData.vehicles
+        };
+
+        // Updating Renders when user is picked,
+        if (activeUsersIds.length > 0) {
+            if (userData.users) {
+                updatedUsers.users = userData.users.filter(user => activeUsersIds.includes(user.id));
+                updatedUsers.vehicles = userData.vehicles.filter(vehicle => activeUsersIds.includes(vehicle.user_id));
+            }
+        }
+
+        // updating renders when is Active is On
+        if (isActive) {
+            updatedUsers.vehicles = userData.vehicles.filter(vehicle => vehicle.status === "is-active");
+        }
+
+        return updatedUsers;
+    };
+
 
     render() {
-        const {userData} = this.props;
+        const {userData} = this.props; // passing users to the Search CArd
+
+        const updatedUserData = this.filterUserData(userData);
 
         if (userData) {
-            const {users, vehicles} = userData
+            const {users} = updatedUserData;
             if (users && users.length > 0) {
                 return (
                     <Fragment>
                         <Header></Header>
                         <Container maxWidth="lg">
-                            <SearchCard></SearchCard>
-                            <MapView userData={this.props.userData}></MapView>
-                            {/*<TableView userData={this.props.userData}></TableView>*/}
+                            <SearchCard
+                                users={userData.users}
+                                isActive={this.state.isActive}
+                                onChangeActive={this.changeActive}
+                                onUsersPicked={this.userHasPicked}>
+                            </SearchCard>
+
+                            <Switch>
+                                <Route exact path="/map">
+                                    <MapView userData={updatedUserData}></MapView>
+                                </Route>
+                                <Route exact path="/(table|)">
+                                    <TableView userData={updatedUserData}></TableView>
+                                </Route>
+                            </Switch>
                         </Container>
-
-
-
-                        {/*<div className="hidden">*/}
-                        {/*    {users.map(({user_name, id}) => (<li key={id}>{user_name}</li>))*/}
-                        {/*    }*/}
-                        {/*    <hr/>*/}
-                        {/*    {vehicles.map(({reg_number, status}) => <li key={reg_number}>{reg_number} {status}</li>)}*/}
-                        {/*</div>*/}
-                        {/*<MapView></MapView>*/}
-                        {/*<TableView></TableView>*/}
-                        {/*<div className="main-control">*/}
-
-                        {/*</div>*/}
                         <Footer></Footer>
                     </Fragment>
                 )
             }
         }
         return (
-            <div>
-                Loading
-            </div>
+            <>
+                <LoadingCircle></LoadingCircle>
+            </>
         )
     }
 }
@@ -70,6 +111,7 @@ export class App extends Component {
 // Map Redux state to props
 function mapStateToProps(state) {
     const {userData} = state.IOReducer;
+
     return {
         userData
     };

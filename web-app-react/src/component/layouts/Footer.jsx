@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react'
+import {Link } from 'react-router-dom';
 import {BottomNavigation, BottomNavigationAction, makeStyles} from "@material-ui/core";
 import MapIcon from '@material-ui/icons/Map';
 import TableChartIcon from '@material-ui/icons/TableChart';
@@ -13,15 +14,31 @@ const useStyles = makeStyles({
 });
 
 function Footer() {
+    const [value, setValue] = React.useState(0);
     const classes = useStyles();
     return (
         <Fragment>
             <BottomNavigation
+                value={value}
+                onChange={(event, newValue) => {
+                    setValue(newValue);
+                }}
                 showLabels
                 className={classes.root}
             >
-                <BottomNavigationAction label="Map View" icon={<MapIcon/>}/>
-                <BottomNavigationAction label="Table View" icon={<TableChartIcon/>}/>
+                <BottomNavigationAction
+                    component={Link}
+                    to="/table"
+                    label="Table View"
+                    icon={<TableChartIcon/>}
+                />
+                <BottomNavigationAction
+                    component={Link}
+                    to="/map"
+                    label="Map View"
+                    icon={<MapIcon/>}
+                />
+
             </BottomNavigation>
         </Fragment>
     )

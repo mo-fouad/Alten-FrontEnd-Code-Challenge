@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import GoogleMapReact from 'google-map-react';
 import Paper from "@material-ui/core/Paper";
+import UserView from './oneUser'
 
 // Starter COmponnent
 const AnyReactComponent = ({text}) => <div>{text}</div>;
@@ -10,17 +11,18 @@ class MapView extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            center: {//58.9536859,14.6394602,6.79z
-                lat: 58.9536859,
-                lng: 14.6394602
+            center: {//59.3134343,17.7800174,9.5z
+                lat: 59.3134343,
+                lng: 17.7800174
             },
-            zoom: 7
+            zoom: 8
         }
     }
 
 
     render() {
         const {userData: {users, vehicles} = {}} = this.props;
+
         return (
             <Paper style={{height: '78vh', width: 'auto' ,margin:"0 10px"}}>
                 <GoogleMapReact
@@ -29,10 +31,11 @@ class MapView extends Component {
                     defaultZoom={this.state.zoom}
                 >
                     {users.map(user => (
-                        <AnyReactComponent key={user.id}
-                            lat={user.lat}
-                            lng={user.long}
-                            text={user.user_name}
+                        <UserView key={user.id}
+                                  lat={user.lat}
+                                  lng={user.long}
+                                  userData={user}
+                                  userCars={vehicles.filter(vehicle => user.id === vehicle.user_id)}
                         />
                     ))
                     }

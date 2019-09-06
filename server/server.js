@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
     console.log("New client connected");
     setInterval(() => {
         socket.emit('dataUpdated', updateDBVehicles(db))
-    }, 2000);
+    }, 1000);
     socket.on("disconnect", () => {
         console.log("Client disconnected");
     });
