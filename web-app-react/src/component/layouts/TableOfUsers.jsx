@@ -28,11 +28,11 @@ function TableView(props) {
     const {userData: {users, vehicles} = {}} = props;
 
     return (
-
         <>
             {users.map(user => (
                 <Paper key={user.id} className={classes.root}>
-                    <Typography variant="h6"  className={classes.nameOfUSerCar}>{user.user_name}</Typography>
+                    <Typography variant="h6" className={classes.nameOfUSerCar}>{user.user_name}</Typography>
+
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
@@ -43,7 +43,7 @@ function TableView(props) {
                         </TableHead>
                         <TableBody>
                             <>
-                                {vehicles.map(car => {``
+                                {vehicles.map(car => {
                                         if (user.id === car.user_id) return (
                                             <TableRow key={car.reg_number}>
                                                 <TableCell>{car.vehicle_id}</TableCell>
@@ -59,7 +59,6 @@ function TableView(props) {
                 </Paper>
             ))}
         </>
-
     )
 }
 

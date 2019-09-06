@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 
 import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
-import SearchCard from "./layouts/SearchCard.js"
+import SearchCard from "./layouts/SearchCard.jsx"
 
 import '../scss/app.scss'
 import TableView from "./layouts/TableOfUsers";
@@ -29,6 +29,7 @@ export class App extends Component {
     componentDidMount = () => {
         const {getUsersDataIo} = this.props;
         getUsersDataIo();
+
     };
 
     changeActive = (data) => {

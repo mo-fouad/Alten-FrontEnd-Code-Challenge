@@ -1,8 +1,7 @@
 import React from 'react'
-import {AppBar, Toolbar, Typography, FormControl, InputLabel, Select, MenuItem} from "@material-ui/core";
+import {AppBar, Toolbar, Typography, FormControl, InputLabel, Select, MenuItem , Button} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-
-
+import FullscreenIcon from '@material-ui/icons/Fullscreen';
 
 const useStyles = makeStyles(theme => ({
     menuLang: {
@@ -11,6 +10,9 @@ const useStyles = makeStyles(theme => ({
     formControl: {
         margin: theme.spacing(1),
         minWidth: 120,
+    },
+    button: {
+        margin: theme.spacing(1),
     },
 
 }));
@@ -48,6 +50,9 @@ function Header() {
                             <MenuItem value="Se">Se</MenuItem>
                         </Select>
                     </FormControl>
+                    <Button variant="outlined" className={classes.button}>
+                        <FullscreenIcon></FullscreenIcon>
+                    </Button>
                 </Toolbar>
             </AppBar>
         </header>
