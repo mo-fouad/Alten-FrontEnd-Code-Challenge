@@ -1,9 +1,9 @@
-import ActionTypes from './actionsTypes';
-import io from 'socket.io-client';
+import ActionTypes from "./actionsTypes";
+import io from "socket.io-client";
 
-const socket = io.connect('http://localhost:4002/');
+const socket = io.connect(process.env.API_URL || "http://localhost:4001/");
 
-export const isConnected = (data) => {
+export const isConnected = data => {
     return {
         type: ActionTypes.ON_CONNECT,
         payload: data
@@ -12,7 +12,8 @@ export const isConnected = (data) => {
 
 export const getUsersDataIo = () => {
     return dispatch => {
-
-        socket.on('dataUpdated', (data) => { dispatch(isConnected(data)) })
+        socket.on("dataUpdated", data => {
+            dispatch(isConnected(data));
+        });
     };
 };

@@ -1,9 +1,9 @@
 export const initialState = {
     isFetching: false,
     userData: [],
-    errorDetails: ''
+    errorDetails: ""
 };
 
 export const initialIOStatus = {
-    userData:{}
-}
+    userData: {}
+};

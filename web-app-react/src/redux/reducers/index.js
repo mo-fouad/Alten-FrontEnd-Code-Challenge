@@ -1,9 +1,8 @@
-import {combineReducers} from "redux";
-import APIReducer from './apiCallingReducer'
-import IOReducer from './ioReducer'
+import { combineReducers } from "redux";
+import IOReducer from "./ioReducer";
 
 const reducers = combineReducers({
-     IOReducer
+    IOReducer
 });
 
-export default reducers
+export default reducers;

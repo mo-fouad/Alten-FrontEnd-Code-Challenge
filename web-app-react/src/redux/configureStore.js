@@ -1,14 +1,12 @@
-import { applyMiddleware, compose, createStore } from 'redux';
-import reducers from './reducers/index';
-import {createLogger} from 'redux-logger';
-import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
+import { applyMiddleware, compose, createStore } from "redux";
+import reducers from "./reducers/index";
+//import { createLogger } from "redux-logger";
+import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
 
-import thunk from 'redux-thunk';
-
-
+import thunk from "redux-thunk";
 
 // Creating our Starter store
-const loggerMiddleware = createLogger();
+// const loggerMiddleware = createLogger();
 
 function configureStore(initialState) {
     const composeEnhancers =
@@ -18,12 +16,13 @@ function configureStore(initialState) {
     return createStore(
         reducers,
         initialState,
-        composeEnhancers(applyMiddleware(
-            thunk,
-           // loggerMiddleware,
-            reduxImmutableStateInvariant(),
-            ),
-        ),
+        composeEnhancers(
+            applyMiddleware(
+                thunk,
+                //loggerMiddleware,
+                reduxImmutableStateInvariant()
+            )
+        )
     );
 }
 

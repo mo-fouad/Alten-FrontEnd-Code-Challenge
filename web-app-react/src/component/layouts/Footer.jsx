@@ -1,8 +1,12 @@
-import React, {Fragment} from 'react'
-import {Link } from 'react-router-dom';
-import {BottomNavigation, BottomNavigationAction, makeStyles} from "@material-ui/core";
-import MapIcon from '@material-ui/icons/Map';
-import TableChartIcon from '@material-ui/icons/TableChart';
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+import {
+    BottomNavigation,
+    BottomNavigationAction,
+    makeStyles
+} from "@material-ui/core";
+import MapIcon from "@material-ui/icons/Map";
+import TableChartIcon from "@material-ui/icons/TableChart";
 
 const useStyles = makeStyles({
     root: {
@@ -10,7 +14,7 @@ const useStyles = makeStyles({
         background: "#eee",
         bottom: "0",
         position: "fixed"
-    },
+    }
 });
 
 function Footer() {
@@ -30,18 +34,17 @@ function Footer() {
                     component={Link}
                     to="/table"
                     label="Table View"
-                    icon={<TableChartIcon/>}
+                    icon={<TableChartIcon />}
                 />
                 <BottomNavigationAction
                     component={Link}
                     to="/map"
                     label="Map View"
-                    icon={<MapIcon/>}
+                    icon={<MapIcon />}
                 />
-
             </BottomNavigation>
         </Fragment>
-    )
+    );
 }
 
-export default Footer
+export default Footer;

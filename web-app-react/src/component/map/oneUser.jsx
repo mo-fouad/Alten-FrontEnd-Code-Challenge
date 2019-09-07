@@ -1,11 +1,13 @@
-import React from 'react'
-import {makeStyles, Typography} from "@material-ui/core";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableHead from "@material-ui/core/TableHead";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-
+import React from "react";
+import {
+    makeStyles,
+    Typography,
+    TableRow,
+    TableCell,
+    TableHead,
+    Table,
+    TableBody
+} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -15,17 +17,19 @@ const useStyles = makeStyles(theme => ({
         background: "#fff"
     },
     nameOfUSerCar: {
-        padding: '10px',
-        textAlign: 'center',
-        background: '#eee'
-    },
+        padding: "10px",
+        textAlign: "center",
+        background: "#eee"
+    }
 }));
 
 function userView(props) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Typography variant="body1" className={classes.nameOfUSerCar}>{props.userData.user_name}</Typography>
+            <Typography variant="body1" className={classes.nameOfUSerCar}>
+                {props.userData.user_name}
+            </Typography>
             <Table className={classes.table} size="small">
                 <TableHead>
                     <TableRow>
@@ -35,18 +39,19 @@ function userView(props) {
                 </TableHead>
                 <TableBody>
                     <>
-                        {props.userCars.map(car =>
-                                <TableRow key={car.reg_number}>
-                                    <TableCell>{car.reg_number}</TableCell>
-                                    <TableCell align="center">{car.status}</TableCell>
-                                </TableRow>
-                        )}
+                        {props.userCars.map(car => (
+                            <TableRow key={car.reg_number}>
+                                <TableCell>{car.reg_number}</TableCell>
+                                <TableCell align="center">
+                                    {car.status}
+                                </TableCell>
+                            </TableRow>
+                        ))}
                     </>
                 </TableBody>
             </Table>
-
         </div>
-    )
+    );
 }
 
-export default userView
+export default userView;

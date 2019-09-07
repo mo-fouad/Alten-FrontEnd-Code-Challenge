@@ -1,0 +1,40 @@
+{
+    "env": {
+        "node": true,
+        "browser": true,
+        "es6": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "eslint:recommended",
+        "plugin:prettier/recommended"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "prettier",
+        "babel"
+    ],
+    "settings": {
+        "react": {
+            "pragma": "React",
+            "version": "detect"
+        }
+    },
+    "rules": {
+        "no-console": "off",
+        "no-eval": "error",
+        "react/prop-types": 0
+    }
+}
