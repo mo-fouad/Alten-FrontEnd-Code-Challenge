@@ -8,6 +8,7 @@ import {
     Toolbar,
     Typography
 } from "@material-ui/core";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
 
@@ -56,5 +57,14 @@ function Header(props) {
         </header>
     );
 }
+
+Header.propTypes = {
+    words: PropTypes.shape({
+        logo: PropTypes.string
+    }),
+    currentLang: PropTypes.string.isRequired,
+    changeLang: PropTypes.func,
+    onChangeFullScreen: PropTypes.func
+};
 
 export default Header;

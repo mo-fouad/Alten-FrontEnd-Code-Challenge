@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, makeStyles, Paper, Switch } from "@material-ui/core";
 import Select from "react-select";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(theme => ({
     searchCard: {
@@ -77,5 +78,35 @@ function SearchCard(props) {
         </div>
     );
 }
+
+// 22:11  warning  'users' is missing in props validation           react/prop-types
+// 22:17  warning  'users.forEach' is missing in props validation   react/prop-types
+// 28:15  warning  'onChangeActive' is missing in props validation  react/prop-types
+// 39:15  warning  'onUsersPicked' is missing in props validation   react/prop-types
+// 55:56  warning  'words' is missing in props validation           react/prop-types
+// 55:62  warning  'words.select' is missing in props validation    react/prop-types
+// 64:47  warning  'words' is missing in props validation           react/prop-types
+// 64:53  warning  'words.active' is missing in props validation    react/prop-types
+
+// users={userData.users}
+// isActive={this.state.isActive}
+// onChangeActive={this.changeActive}
+// onUsersPicked={this.userHasPicked}
+
+SearchCard.propTypes = {
+    onUsersPicked: PropTypes.func,
+    onChangeActive: PropTypes.func,
+    isActive: PropTypes.bool,
+    users: PropTypes.arrayOf(
+        PropTypes.shape({
+            user_name: PropTypes.string,
+            forEach: PropTypes.func
+        })
+    ),
+    words: PropTypes.shape({
+        select: PropTypes.string,
+        active: PropTypes.string
+    })
+};
 
 export default SearchCard;

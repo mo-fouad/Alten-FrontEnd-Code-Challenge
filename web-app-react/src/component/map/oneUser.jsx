@@ -1,13 +1,15 @@
 import React from "react";
 import {
     makeStyles,
-    Typography,
-    TableRow,
+    Table,
+    TableBody,
     TableCell,
     TableHead,
-    Table,
-    TableBody
+    TableRow,
+    Typography
 } from "@material-ui/core";
+
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -53,5 +55,18 @@ function userView(props) {
         </div>
     );
 }
+
+userView.propTypes = {
+    lng: PropTypes.string.isRequired,
+    lat: PropTypes.string.isRequired,
+    userData: PropTypes.string.isRequired,
+    userCars: PropTypes.arrayOf(
+        PropTypes.shape({
+            user_id: PropTypes.string,
+            vehicle_id: PropTypes.string,
+            reg_number: PropTypes.string
+        })
+    )
+};
 
 export default userView;

@@ -8,6 +8,8 @@ import TableBody from "@material-ui/core/TableBody";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Typography } from "@material-ui/core";
 
+import PropTypes from "prop-types";
+
 const useStyles = makeStyles(theme => ({
     root: {
         width: "auto",
@@ -71,5 +73,36 @@ function TableView(props) {
         </>
     );
 }
+
+TableView.propTypes = {
+    userData: PropTypes.shape({
+        users: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string,
+                user_name: PropTypes.string,
+                user_address: PropTypes.string,
+                lat: PropTypes.string,
+                long: PropTypes.string
+            })
+        ),
+        vehicles: PropTypes.arrayOf(
+            PropTypes.shape({
+                user_id: PropTypes.string,
+                vehicle_id: PropTypes.string,
+                reg_number: PropTypes.string
+            })
+        )
+    }),
+    words: PropTypes.shape({
+        active: PropTypes.string,
+        carId: PropTypes.string,
+        carPlate: PropTypes.string,
+        carStatus: PropTypes.string,
+        logo: PropTypes.string,
+        mapView: PropTypes.string,
+        select: PropTypes.string,
+        tableView: PropTypes.string
+    })
+};
 
 export default TableView;

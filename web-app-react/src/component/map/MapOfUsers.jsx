@@ -2,19 +2,38 @@ import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
 import Paper from "@material-ui/core/Paper";
 import UserView from "./oneUser";
+import PropTypes from "prop-types";
 
 class MapView extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            center: {
-                //59.3134343,17.7800174,9.5z
-                lat: 59.3134343,
-                lng: 17.7800174
-            },
-            zoom: 8
-        };
-    }
+    state = {
+        center: {
+            //59.3134343,17.7800174,9.5z
+            lat: 59.3134343,
+            lng: 17.7800174
+        },
+        zoom: 8
+    };
+
+    static propTypes = {
+        userData: PropTypes.shape({
+            users: PropTypes.arrayOf(
+                PropTypes.shape({
+                    id: PropTypes.string,
+                    user_name: PropTypes.string,
+                    user_address: PropTypes.string,
+                    lat: PropTypes.string,
+                    long: PropTypes.string
+                })
+            ),
+            vehicles: PropTypes.arrayOf(
+                PropTypes.shape({
+                    user_id: PropTypes.string,
+                    vehicle_id: PropTypes.string,
+                    reg_number: PropTypes.string
+                })
+            )
+        })
+    };
 
     render() {
         const { userData: { users, vehicles } = {} } = this.props;
@@ -33,7 +52,7 @@ class MapView extends Component {
                             key={user.id}
                             lat={user.lat}
                             lng={user.long}
-                            userData={user}
+                            userData={user.user_name}
                             userCars={vehicles.filter(
                                 vehicle => user.id === vehicle.user_id
                             )}
