@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {bindActionCreators} from 'redux';
 import {Route, Switch} from "react-router-dom";
-//import * as APIActions from '../redux/actions/apiActions';
 import * as IOActions from '../redux/actions/ioActions'
 import {connect} from 'react-redux';
 import Fullscreen from "react-full-screen";
@@ -18,16 +18,35 @@ import MapView from "./map/MapOfUsers";
 import words from '../localization/app'
 
 export class App extends Component {
+    static propTypes = {
+        userData: PropTypes.shape({
+            users: PropTypes.arrayOf(PropTypes.shape({
+                id: PropTypes.string,
+                user_name: PropTypes.string,
+                user_address: PropTypes.string,
+                lat: PropTypes.string,
+                long: PropTypes.string
+            })),
+            vehicles: PropTypes.arrayOf(PropTypes.shape({
+                user_id: PropTypes.string,
+                vehicle_id: PropTypes.string,
+                reg_number: PropTypes.string
+            })),
+        }),
+        getUsersDataIo: PropTypes.func
+    };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isActive: false,
-            isFull: false,
-            userPicked: [],
-            language: 'en'
-        }
-    }
+    static defaultProps = {
+        userData: {users: [], vehicles: []},
+        getUsersDataIo: () => { }
+    };
+
+    state = {
+        isActive: false,
+        isFull: false,
+        userPicked: [],
+        language: 'en'
+    };
 
     componentDidMount = () => {
         const {getUsersDataIo} = this.props;
@@ -83,7 +102,6 @@ export class App extends Component {
 
     render() {
         const {userData} = this.props; // passing users to the Search CArd
-
         const updatedUserData = this.filterUserData(userData);
 
         words.setLanguage(this.state.language);
@@ -96,7 +114,7 @@ export class App extends Component {
                         enabled={this.state.isFull}
                         onChange={isFull => this.setState({isFull})}
                     >
-                        <Header words={words} onChangeFullScreen={this.goFull} changeLang={this.changeLang}></Header>
+                        <Header words={words} onChangeFullScreen={this.goFull} currentLang={this.state.language} changeLang={this.changeLang}></Header>
                         <Container maxWidth="lg">
                             <SearchCard
                                 words={words}

@@ -28,7 +28,7 @@ export const getDataSuccess = (response) => {
 export const getUsersData = () => {
     return dispatch => {
         dispatch(getDataStart());
-        axios.get(`http://localhost:4001/`).then(res => {
+        axios.get(`http://localhost:4002/`).then(res => {
             dispatch(getDataSuccess(res.data));
         }).catch(err => {
             dispatch(getDataError(err));

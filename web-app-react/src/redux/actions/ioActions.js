@@ -1,7 +1,7 @@
 import ActionTypes from './actionsTypes';
 import io from 'socket.io-client';
 
-const socket = io.connect('http://localhost:4001/');
+const socket = io.connect('http://localhost:4002/');
 
 export const isConnected = (data) => {
     return {
