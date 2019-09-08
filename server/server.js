@@ -12,6 +12,8 @@ const getApiAndEmit = async socket => {
   socket.emit("FromAPI", { Data: "data" });
 };
 
+let timer = 1000;
+
 /**
  * Sending Updated Data every 1 sec .. just to fake the Real-Life Data
  */
@@ -19,7 +21,7 @@ io.on("connection", socket => {
   console.log("New client connected");
   setInterval(() => {
     socket.emit("dataUpdated", updateDBVehicles(db));
-  }, 1000);
+  }, timer);
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });

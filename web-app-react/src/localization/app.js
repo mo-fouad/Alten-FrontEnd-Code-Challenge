@@ -9,7 +9,9 @@ const words = new LocalizedStrings({
         carId: "Car ID",
         carPlate: "Car Plate Name",
         carStatus: "Car Status",
-        select: "Select User"
+        select: "Select User",
+        plate: "Plate",
+        status: "Status"
     },
     se: {
         logo: "Fordon App",
@@ -19,7 +21,9 @@ const words = new LocalizedStrings({
         carId: "Bil-ID",
         carPlate: "Bilplattans namn",
         carStatus: "Bilstatus",
-        select: "Välj Användare"
+        select: "Välj Användare",
+        plate: "Tallrik",
+        status: "Status"
     }
 });
 

@@ -30,7 +30,7 @@ function userView(props) {
     return (
         <div className={classes.root}>
             <Typography variant="body1" className={classes.nameOfUSerCar}>
-                {props.userData.user_name}
+                {props.userData}
             </Typography>
             <Table className={classes.table} size="small">
                 <TableHead>
