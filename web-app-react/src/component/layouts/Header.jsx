@@ -1,13 +1,5 @@
-import React from "react";
-import {
-    AppBar,
-    Button,
-    FormControl,
-    MenuItem,
-    Select,
-    Toolbar,
-    Typography
-} from "@material-ui/core";
+import React, { Fragment } from "react";
+import { AppBar, Button, FormControl, MenuItem, Select, Toolbar, Typography } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import FullscreenIcon from "@material-ui/icons/Fullscreen";
@@ -28,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 function Header(props) {
     const classes = useStyles();
     return (
-        <header className={classes.root}>
+        <Fragment>
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h4" color="inherit">
@@ -45,16 +37,12 @@ function Header(props) {
                             <MenuItem value={"se"}>Se</MenuItem>
                         </Select>
                     </FormControl>
-                    <Button
-                        variant="outlined"
-                        onClick={props.onChangeFullScreen}
-                        className={classes.button}
-                    >
+                    <Button variant="outlined" onClick={props.onChangeFullScreen} className={classes.button}>
                         <FullscreenIcon></FullscreenIcon>
                     </Button>
                 </Toolbar>
             </AppBar>
-        </header>
+        </Fragment>
     );
 }
 
