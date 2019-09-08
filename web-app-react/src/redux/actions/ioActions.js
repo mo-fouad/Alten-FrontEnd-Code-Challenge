@@ -1,11 +1,11 @@
-import ActionTypes from "./actionsTypes";
+import { ON_CONNECT } from "./actionsTypes";
 import io from "socket.io-client";
 
 const socket = io.connect(process.env.API_URL || "http://localhost:4001/");
 
 export const isConnected = data => {
     return {
-        type: ActionTypes.ON_CONNECT,
+        type: ON_CONNECT,
         payload: data
     };
 };

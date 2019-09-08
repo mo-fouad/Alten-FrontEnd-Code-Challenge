@@ -1,7 +1,7 @@
-export default {
-    LOAD_DATA_START: `LOAD_DATA_START`,
-    LOAD_DATA_ERROR: `LOAD_DATA_ERROR`,
-    LOAD_DATA_SUCCESS: `LOAD_DATA_SUCCESS`,
-    ON_CONNECT: `ON_CONNECT`,
-    ON_DISCONNECT: `ON_CONNECT`
-};
+// export default {
+//     ON_CONNECT: `ON_CONNECT`,
+//     ON_DISCONNECT: `ON_CONNECT`
+// };
+
+export const ON_CONNECT = "ON_CONNECT";
+export const ON_DISCONNECT = `ON_CONNECT`;
