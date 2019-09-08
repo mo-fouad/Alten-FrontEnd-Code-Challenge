@@ -155,7 +155,7 @@ export class App extends Component {
         }
         return (
             <>
-                <LoadingCircle></LoadingCircle>
+                <LoadingCircle />
             </>
         );
     }

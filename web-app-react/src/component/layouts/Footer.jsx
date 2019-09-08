@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import {
     BottomNavigation,
@@ -21,7 +21,7 @@ function Footer() {
     const [value, setValue] = React.useState(0);
     const classes = useStyles();
     return (
-        <Fragment>
+        <footer>
             <BottomNavigation
                 value={value}
                 onChange={(event, newValue) => {
@@ -43,7 +43,7 @@ function Footer() {
                     icon={<MapIcon />}
                 />
             </BottomNavigation>
-        </Fragment>
+        </footer>
     );
 }
 

@@ -1,2 +1,2 @@
-!/.*
-/test-config/
+*.test.js
+!.eslintrc.js
