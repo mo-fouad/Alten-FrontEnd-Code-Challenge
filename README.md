@@ -1,4 +1,4 @@
-#Alten Front End Challenge
+<h1>Alten Front End Challenge</h1>
 
 The Project is a real-life application that shows the status of the registered cars according to their users.
 The application uses `React, Redux, Redux-thunk and material UI` in the Front end,
