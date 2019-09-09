@@ -9,8 +9,7 @@ import thunk from "redux-thunk";
 // const loggerMiddleware = createLogger();
 
 function configureStore(initialState) {
-    const composeEnhancers =
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
+    const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
     // just return the createStore function with two args > combinedReducers & initialState
 
     return createStore(

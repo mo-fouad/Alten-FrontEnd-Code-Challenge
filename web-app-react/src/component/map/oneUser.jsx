@@ -1,13 +1,5 @@
 import React from "react";
-import {
-    makeStyles,
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableRow,
-    Typography
-} from "@material-ui/core";
+import { makeStyles, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@material-ui/core";
 
 import PropTypes from "prop-types";
 
@@ -44,9 +36,7 @@ function userView(props) {
                         {props.userCars.map(car => (
                             <TableRow key={car.reg_number}>
                                 <TableCell>{car.reg_number}</TableCell>
-                                <TableCell align="center">
-                                    {car.status}
-                                </TableCell>
+                                <TableCell align="center">{car.status}</TableCell>
                             </TableRow>
                         ))}
                     </>

@@ -42,9 +42,7 @@ function TableView(props) {
                             <TableRow>
                                 <TableCell>{words.carId}</TableCell>
                                 <TableCell>{words.carPlate}</TableCell>
-                                <TableCell align="center">
-                                    {words.carStatus}
-                                </TableCell>
+                                <TableCell align="center">{words.carStatus}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -53,15 +51,9 @@ function TableView(props) {
                                     if (user.id === car.user_id)
                                         return (
                                             <TableRow key={car.reg_number}>
-                                                <TableCell>
-                                                    {car.vehicle_id}
-                                                </TableCell>
-                                                <TableCell>
-                                                    {car.reg_number}
-                                                </TableCell>
-                                                <TableCell align="center">
-                                                    {car.status}
-                                                </TableCell>
+                                                <TableCell>{car.vehicle_id}</TableCell>
+                                                <TableCell>{car.reg_number}</TableCell>
+                                                <TableCell align="center">{car.status}</TableCell>
                                             </TableRow>
                                         );
                                 })}

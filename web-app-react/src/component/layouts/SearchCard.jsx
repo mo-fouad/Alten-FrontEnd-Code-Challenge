@@ -45,18 +45,11 @@ function SearchCard(props) {
             <Grid container className={classes.searchCard}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <Grid
-                            container
-                            spacing={2}
-                            direction="row"
-                            justify="center"
-                        >
+                        <Grid container spacing={2} direction="row" justify="center">
                             <Grid item xs={9}>
                                 <Select
                                     placeholder={props.words.select}
-                                    onChange={usersPicked =>
-                                        SelectChange(usersPicked)
-                                    }
+                                    onChange={usersPicked => SelectChange(usersPicked)}
                                     options={userOptions}
                                     isMulti
                                 />

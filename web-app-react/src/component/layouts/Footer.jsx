@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-    BottomNavigation,
-    BottomNavigationAction,
-    makeStyles
-} from "@material-ui/core";
+import { BottomNavigation, BottomNavigationAction, makeStyles } from "@material-ui/core";
 import MapIcon from "@material-ui/icons/Map";
 import TableChartIcon from "@material-ui/icons/TableChart";
 
@@ -30,18 +26,8 @@ function Footer() {
                 showLabels
                 className={classes.root}
             >
-                <BottomNavigationAction
-                    component={Link}
-                    to="/table"
-                    label="Table View"
-                    icon={<TableChartIcon />}
-                />
-                <BottomNavigationAction
-                    component={Link}
-                    to="/map"
-                    label="Map View"
-                    icon={<MapIcon />}
-                />
+                <BottomNavigationAction component={Link} to="/table" label="Table View" icon={<TableChartIcon />} />
+                <BottomNavigationAction component={Link} to="/map" label="Map View" icon={<MapIcon />} />
             </BottomNavigation>
         </footer>
     );

@@ -38,7 +38,7 @@ function Header(props) {
                         </Select>
                     </FormControl>
                     <Button variant="outlined" onClick={props.onChangeFullScreen} className={classes.button}>
-                        <FullscreenIcon></FullscreenIcon>
+                        <FullscreenIcon />
                     </Button>
                 </Toolbar>
             </AppBar>

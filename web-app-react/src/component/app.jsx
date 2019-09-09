@@ -62,9 +62,7 @@ export class App extends Component {
     };
 
     userHasPicked = usersPicks => {
-        !usersPicks
-            ? this.setState({ userPicked: [] })
-            : this.setState({ userPicked: usersPicks });
+        !usersPicks ? this.setState({ userPicked: [] }) : this.setState({ userPicked: usersPicks });
     };
 
     filterUserData = userData => {
@@ -79,20 +77,14 @@ export class App extends Component {
         // Updating Renders when user is picked,
         if (activeUsersIds.length > 0) {
             if (userData.users) {
-                updatedUsers.users = userData.users.filter(user =>
-                    activeUsersIds.includes(user.id)
-                );
-                updatedUsers.vehicles = userData.vehicles.filter(vehicle =>
-                    activeUsersIds.includes(vehicle.user_id)
-                );
+                updatedUsers.users = userData.users.filter(user => activeUsersIds.includes(user.id));
+                updatedUsers.vehicles = userData.vehicles.filter(vehicle => activeUsersIds.includes(vehicle.user_id));
             }
         }
 
         // updating renders when is Active is On
         if (isActive) {
-            updatedUsers.vehicles = userData.vehicles.filter(
-                vehicle => vehicle.status === "is-active"
-            );
+            updatedUsers.vehicles = userData.vehicles.filter(vehicle => vehicle.status === "is-active");
         }
 
         return updatedUsers;
@@ -117,10 +109,7 @@ export class App extends Component {
             const { users } = updatedUserData;
             if (users && users.length > 0) {
                 return (
-                    <Fullscreen
-                        enabled={this.state.isFull}
-                        onChange={isFull => this.setState({ isFull })}
-                    >
+                    <Fullscreen enabled={this.state.isFull} onChange={isFull => this.setState({ isFull })}>
                         <Header
                             words={words}
                             onChangeFullScreen={this.goFull}
@@ -141,10 +130,7 @@ export class App extends Component {
                                     <MapView userData={updatedUserData} />
                                 </Route>
                                 <Route exact path="/(table|)">
-                                    <TableView
-                                        words={words}
-                                        userData={updatedUserData}
-                                    />
+                                    <TableView words={words} userData={updatedUserData} />
                                 </Route>
                             </Switch>
                         </Container>

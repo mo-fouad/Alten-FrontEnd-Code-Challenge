@@ -53,9 +53,7 @@ class MapView extends Component {
                             lat={user.lat}
                             lng={user.long}
                             userData={user.user_name}
-                            userCars={vehicles.filter(
-                                vehicle => user.id === vehicle.user_id
-                            )}
+                            userCars={vehicles.filter(vehicle => user.id === vehicle.user_id)}
                         />
                     ))}
                 </GoogleMapReact>
