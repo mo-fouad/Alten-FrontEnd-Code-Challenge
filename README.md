@@ -1,5 +1,7 @@
 <h1>Alten Front End Challenge</h1>
 
+<a href="https://www.codacy.com/manual/mo-fouad/Alten-FrontEnd-Code-Challenge?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mo-fouad/Alten-FrontEnd-Code-Challenge&amp;utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/c6b4b72aee604a6a81ea0a657deb6025?isInternal=true"></a>
+
 The Project is a real-life application that shows the status of the registered cars according to their users.
 The application uses `React, Redux, Redux-thunk and material UI` in the Front end,
 And the backEnd is to fake a real time Data using `socket.Io`
