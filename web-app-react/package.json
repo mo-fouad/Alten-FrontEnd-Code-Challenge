@@ -7,9 +7,11 @@
   "license": "ISC",
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js --port 3000",
-    "test": "jest --watch",
     "lint": "eslint src",
-    "cypress": "cypress open"
+    "test": "jest src",
+    "cypress": "cypress open",
+    "cy:run": "cypress run",
+    "cy:test": "yarn start & yarn cy:run"
   },
   "dependencies": {
     "@material-ui/core": "^4.4.0",
