@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:7.10
+      - image: circleci/node:8
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -18,12 +18,19 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache: # special step to restore the dependency cache
+          key: dependency-cache-{{ checksum "./web-app-react/package.json" }}
 
-      - run: yarn install
+      - run: cd web-app-react && yarn install
+
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "./web-app-react/package.json" }}
+          paths:
+            - ./node_modules
+
+
+      # run Linting!
+      - run: cd web-app-react && yarn lint
 
       # run tests!
-      - run: yarn test
-
-      # run E2E tests!
-      - run: yarn cy:test
-
+      - run: cd web-app-react && yarn test
